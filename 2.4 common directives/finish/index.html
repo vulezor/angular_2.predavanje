@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="app">
+    <head>
+        <title>Learn and Understand AngularJS</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+        <script src="app.js"></script>
+        <style>
+            html, body, input, select, textarea{
+                font-size: 1.05em
+            }
+            .btn{
+                margin:5px 5px 0px 5px;
+            }
+        </style> 
+    </head>
+    <body>
+
+        <header>
+			<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">AngularJS</a>
+				</div>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+				</ul>
+			</div>
+			</nav>
+		</header>
+
+        <div class="container">
+
+            <div ng-controller="mainController">
+            
+                <div>
+                    <label>What is your twitter handle?</label>
+                    <input type="text" ng-model="handle" />
+                </div>
+                
+                <div class="alert" ng-class="{ 'alert-warning': handle.length < characters, 'alert-danger': handle.length > characters }" ng-if="handle.length !== characters">
+                
+                    <div ng-show="handle.length < characters">
+                        You have less than 5 characters!
+                    </div>
+                    <div ng-show="handle.length > characters">
+                        You have more than 5 characters!
+                    </div>
+                    
+                </div>
+                
+                <hr />
+                
+                <h1>twitter.com/{{ lowercasehandle() }}</h1>
+                
+                <h3>Rules</h3>
+                <ul>
+                    <li ng-repeat="rule in rules">
+                        {{ rule.rulename }}
+                    </li>
+                </ul>
+                
+            </div>
+            
+		</div>
+
+    </body>
+</html>
